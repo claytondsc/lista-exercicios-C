@@ -1,0 +1,23 @@
+/*
+ * 2. Imprime uma tabela com a tabuada de 1 a 9.
+ *    Autor: claytondsc
+ */
+#include <stdio.h>
+
+int c = 1, result = 0, num = 1;
+
+int main(void) {
+
+  while(num < 10){
+    printf("\nTabuada do %i",num);
+    while(c <= 10){
+      result = num * c;
+      printf("\n%i x %i = %i",num, c, result);
+      c++;
+      }
+    printf("\n\n");
+    c = 1; //  Resetando o contador "c" para fazer para continuar o loop.
+    num++;
+  }
+  return 0;
+}

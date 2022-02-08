@@ -1,0 +1,120 @@
+/*
+ * 3. Fazer um programa que solicita um número decimal e imprime o correspondente em hexa e octal.
+ *    Autor: claytondsc
+ */
+#include <stdio.h>
+
+int num, 
+    num2, 
+    lim, 
+    resto[10], 
+    c = 0;
+
+int main(void) {
+  
+  printf("Digite um número: \n");
+  scanf("%i",&num);
+  num2 = num; // "num2" terá o mesmo valor que "num", mas ela será utilizada para cálculos e seu valor será 
+              //  alterado, enquando "num" continuará tendo o valor inserido pelo usuário para imprimir 
+  	      //  esse valor no final do programa.
+
+  // Numeros Hexadecimais entre 0 e 15 possuem apenas 1 digito. Já entre 16 e 255 possuem 2 digitos. O 
+  // encadeamento de ifs feito aqui tem objetivo de limitar a quantidade de loops no while para evitar 
+  // zeros a esquerda. O algoritmo está limitado a numeros hexadecimais de até 4 digitos.
+  if(num<=15) lim = 1;
+  else if(num>15 && num<256) lim = 2;
+  else if(num>255 && num< 4096) lim = 3;
+  else if(num>4095) lim = 4;
+
+  while (c < lim){
+    resto[c] = num2 % 16;
+    num2 = num2 / 16;
+    c++;
+  }
+  
+  printf("DECIMAL: %i\nHEXADEMIMAL: ",num);
+  c--; // Decremento utilizado para ignorar o resto 0 no final do cálculo.
+
+  while (c >= 0){
+    conversao();
+    c--; // Decremento utilizado para imprimir os valores do vetor "resto[]" do mais último para o primeiro.
+  }
+  
+  // A partir daqui o código praticamente se repete, mas com alterações para converter o numero decimal em octal.
+  c=0;
+  num2 = num;
+
+  if(num<=7) lim = 1;
+  else if(num>7 && num<64) lim = 2;
+  else if(num>63 && num< 512) lim = 3;
+  else if(num>511) lim = 4;
+
+  while (c < lim){
+    resto[c] = num2 % 8;
+    num2 = num2 / 8;
+    c++;
+  }
+  c--;
+  printf("\nOCTAL: ");
+  while (c >= 0){
+    conversao2();
+    c--;
+  }
+
+  return 0;
+}
+
+// Função utilizada anteriormente para imprimir os restos das divisões feitas e também substituir os 
+// numeros de 10 à 15 por letras entre A e F. 
+int conversao(){
+  switch (resto[c]){
+    case 10:
+    printf("A");
+    break;
+    case 11:
+    printf("B");
+    break;
+    case 12:
+    printf("C");
+    break;
+    case 13:
+    printf("D");
+    break;
+    case 14:
+    printf("E");
+    break;
+    case 15:
+    printf("F");
+    break;
+    default:
+    printf("%d",resto[c]);
+  }
+  return 0;
+}
+
+// Função para conversão em octal.
+int conversao2(){
+  switch (resto[c]){
+    case 10:
+    printf("A");
+    break;
+    case 11:
+    printf("B");
+    break;
+    case 12:
+    printf("C");
+    break;
+    case 13:
+    printf("D");
+    break;
+    case 14:
+    printf("E");
+    break;
+    case 15:
+    printf("F");
+    break;
+    default:
+    printf("%d",resto[c]);
+  }
+  return 0;
+}

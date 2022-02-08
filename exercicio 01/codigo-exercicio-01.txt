@@ -1,0 +1,24 @@
+/*
+ * 1. Fazer um programa em C que pergunta um valor
+ *    em metros e imprime o correspondente em decímetros,
+ *    centímetros e milímetos
+ *
+ *    Autor: claytondsc
+ */
+
+#include <stdio.h>
+
+float m, dm, cm, mm ;
+
+int main(void) {
+  printf("Digite um valor (em metros): \n");
+  scanf("%f", &m);
+
+  dm = m * 10;
+  cm = dm * 10;
+  mm = cm * 10;
+
+  printf("\n%.2f m\n%.2f dm\n%.2f cm\n%.2f mm", m, dm, cm, mm);
+  
+  return 0;
+}
